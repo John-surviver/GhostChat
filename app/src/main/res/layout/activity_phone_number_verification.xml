@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/numberverification2" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/numbertxtid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -41,9 +41,9 @@
         android:gravity="center"
         android:text="App will send an OTP to verify your Phone Number"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintEnd_toEndOf="@+id/numbertxtid"
+        app:layout_constraintStart_toStartOf="@+id/numbertxtid"
+        app:layout_constraintTop_toBottomOf="@+id/numbertxtid" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

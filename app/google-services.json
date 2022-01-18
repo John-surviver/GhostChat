@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "338190006497",
+    "project_id": "ghostchat-39cac",
+    "storage_bucket": "ghostchat-39cac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338190006497:android:abf758d9ce9f45001f5fa0",
+        "android_client_info": {
+          "package_name": "com.example.ghostchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338190006497-pdp5gscqo7s5hl54fg0f192e0acrcag8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8fbGGgV_POpDcuL3lo6a87ZIA3h6IfTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338190006497-pdp5gscqo7s5hl54fg0f192e0acrcag8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
