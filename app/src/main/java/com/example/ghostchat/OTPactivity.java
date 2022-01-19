@@ -3,10 +3,16 @@ package com.example.ghostchat;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.ghostchat.databinding.ActivityOtpactivityBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
@@ -19,16 +25,27 @@ public class OTPactivity extends AppCompatActivity {
     ActivityOtpactivityBinding binding;
     FirebaseAuth mAuth;
     String verificationId;
+    ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().hide();
         binding=ActivityOtpactivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.inputOtpid.requestFocus();
         mAuth=FirebaseAuth.getInstance();
         String phoneNumber = getIntent().getStringExtra("phonenumber");
 
         binding.numbertxtid.setText("Verify "+ phoneNumber);
+
+
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Sending OTP");
+        dialog.setCancelable(false);
+        dialog.show();
+
 
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
@@ -49,9 +66,36 @@ public class OTPactivity extends AppCompatActivity {
                             @Override
                             public void onCodeSent(@NonNull String verifyId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 super.onCodeSent(verifyId, forceResendingToken);
+                                dialog.dismiss();
+                                verificationId=verifyId;
                             }
                         }).build();
 
         PhoneAuthProvider.verifyPhoneNumber(options);
+
+
+
+
+
+         binding.continueBtnid.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 String InOTP = binding.inputOtpid.getText().toString();
+                 PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,InOTP);
+                 mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                     @Override
+                     public void onComplete(@NonNull Task<AuthResult> task) {
+
+                         if (task.isSuccessful()){
+                             Toast.makeText(OTPactivity.this,"Logged in succefully",Toast.LENGTH_SHORT).show();
+                         }
+                         else {
+                             Toast.makeText(OTPactivity.this," Failed",Toast.LENGTH_SHORT).show();
+                         }
+                     }
+                 });
+             }
+         });
+
     }
 }
