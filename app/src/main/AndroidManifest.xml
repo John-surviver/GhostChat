@@ -10,16 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GhostChat">
         <activity
+            android:name=".SetupProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".OTPactivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".PhoneNumberVerification"
+            android:name=".SplashScreen"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".PhoneNumberVerification"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

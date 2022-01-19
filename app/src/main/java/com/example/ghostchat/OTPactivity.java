@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -88,6 +89,8 @@ public class OTPactivity extends AppCompatActivity {
 
                          if (task.isSuccessful()){
                              Toast.makeText(OTPactivity.this,"Logged in succefully",Toast.LENGTH_SHORT).show();
+                             Intent intent = new Intent(OTPactivity.this,SetupProfileActivity.class);
+                             startActivity(intent);
                          }
                          else {
                              Toast.makeText(OTPactivity.this," Failed",Toast.LENGTH_SHORT).show();
