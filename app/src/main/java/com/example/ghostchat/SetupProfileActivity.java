@@ -20,6 +20,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Date;
+import java.util.HashMap;
+
 public class SetupProfileActivity extends AppCompatActivity {
     ActivitySetupProfileBinding binding;
     FirebaseAuth mAuth;
@@ -65,66 +68,62 @@ public class SetupProfileActivity extends AppCompatActivity {
                     binding.inputNameid.setError("Please Input your Name");
                     return;
                 }
-                if (selectedImage!=null){
-                    StorageReference reference = storage.getReference().child("profiles").child(mAuth.getUid());
+                if(selectedImage != null) {
+                    StorageReference reference = storage.getReference().child("Profiles").child(mAuth.getUid());
                     reference.putFile(selectedImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            if (task.isSuccessful()){
+                            if(task.isSuccessful()) {
                                 reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        String imageUrl =uri.toString();
+                                        String imageUrl = uri.toString();
 
-                                        String uid =mAuth.getUid();
-                                        String phone =mAuth.getCurrentUser().getPhoneNumber();
+                                        String uid = mAuth.getUid();
+                                        String phone = mAuth.getCurrentUser().getPhoneNumber();
                                         String name = binding.inputNameid.getText().toString();
 
-
-                                        User user = new User(uid, name,phone,imageUrl);
+                                        User user = new User(uid, name, phone, imageUrl);
 
                                         database.getReference()
                                                 .child("users")
-                                                .child("uid")
+                                                .child(uid)
                                                 .setValue(user)
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-
-                                                dialog.dismiss();
-                                                Intent intent = new Intent(SetupProfileActivity.this,MainActivity.class);
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                        });
-
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        dialog.dismiss();
+                                                        Intent intent = new Intent(SetupProfileActivity.this, MainActivity.class);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                });
                                     }
                                 });
-
                             }
                         }
                     });
-                }
-                else {
-                    String uid =mAuth.getUid();
-                    String phone =mAuth.getCurrentUser().getPhoneNumber();
-                    User user = new User(uid, name,phone,"No Image");
+                } else {
+                    String uid = mAuth.getUid();
+                    String phone = mAuth.getCurrentUser().getPhoneNumber();
+
+                    User user = new User(uid, name, phone, "No Image");
 
                     database.getReference()
                             .child("users")
-                            .child("uid")
+                            .child(uid)
                             .setValue(user)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
-                                public void onSuccess(Void unused) {
-
+                                public void onSuccess(Void aVoid) {
                                     dialog.dismiss();
-                                    Intent intent = new Intent(SetupProfileActivity.this,MainActivity.class);
+                                    Intent intent = new Intent(SetupProfileActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
                             });
                 }
+
             }
         });
     }
@@ -132,10 +131,39 @@ public class SetupProfileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null){
-            if (data.getData()!= null){
+
+        if(data != null) {
+            if(data.getData() != null) {
+                Uri uri = data.getData(); // filepath
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                long time = new Date().getTime();
+                StorageReference reference = storage.getReference().child("Profiles").child(time+"");
+                reference.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String filePath = uri.toString();
+                                    HashMap<String, Object> obj = new HashMap<>();
+                                    obj.put("image", filePath);
+                                    database.getReference().child("users")
+                                            .child(FirebaseAuth.getInstance().getUid())
+                                            .updateChildren(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }
+                });
+
                 binding.profilePicid.setImageURI(data.getData());
-                selectedImage=data.getData();
+                selectedImage = data.getData();
             }
         }
     }
