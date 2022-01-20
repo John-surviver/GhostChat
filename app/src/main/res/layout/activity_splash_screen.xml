@@ -6,14 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".SplashScreen">
 
+
+    <ImageView
+        android:id="@+id/imageViewid"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="64dp"
+        android:alpha="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ghosticon1" />
+
     <TextView
-        android:id="@+id/textView"
+
+        android:id="@+id/textViewid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SplashScreen"
-        android:textSize="20sp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="364dp"
+        android:layout_marginEnd="177dp"
+        android:text="GhostChat"
+        android:textColor="@color/magenda"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewid" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Developed By - Ghost"
+        android:textColor="@color/magenda"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.158"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.907" />
 </androidx.constraintlayout.widget.ConstraintLayout>

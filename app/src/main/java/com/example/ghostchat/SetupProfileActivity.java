@@ -39,6 +39,7 @@ public class SetupProfileActivity extends AppCompatActivity {
         storage=FirebaseStorage.getInstance();
 
 
+        getSupportActionBar().hide();
 
 
         binding.profilePicid.setOnClickListener(new View.OnClickListener() {
@@ -82,8 +83,11 @@ public class SetupProfileActivity extends AppCompatActivity {
 
                                         User user = new User(uid, name,phone,imageUrl);
 
-                                        database.getReference().child("users")
-                                                .setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        database.getReference()
+                                                .child("users")
+                                                .child("uid")
+                                                .setValue(user)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
 
@@ -91,14 +95,35 @@ public class SetupProfileActivity extends AppCompatActivity {
                                                 Intent intent = new Intent(SetupProfileActivity.this,MainActivity.class);
                                                 startActivity(intent);
                                                 finish();
-
                                             }
                                         });
+
                                     }
                                 });
+
                             }
                         }
                     });
+                }
+                else {
+                    String uid =mAuth.getUid();
+                    String phone =mAuth.getCurrentUser().getPhoneNumber();
+                    User user = new User(uid, name,phone,"No Image");
+
+                    database.getReference()
+                            .child("users")
+                            .child("uid")
+                            .setValue(user)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+
+                                    dialog.dismiss();
+                                    Intent intent = new Intent(SetupProfileActivity.this,MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
                 }
             }
         });
