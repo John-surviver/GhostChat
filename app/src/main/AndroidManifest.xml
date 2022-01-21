@@ -10,22 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GhostChat">
         <activity
-            android:name=".ChatActivity"
+            android:name=".Activities.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".SetupProfileActivity"
+            android:name=".Activities.SetupProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".OTPactivity"
+            android:name=".Activities.OTPactivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".PhoneNumberVerification"
+            android:name=".Activities.PhoneNumberVerification"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".Activities.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

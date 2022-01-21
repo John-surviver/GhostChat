@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GhostChat/app/src/main/res/drawable/receive_drawable.xml" value="0.26927083333333335" />
+        <entry key="..\:/GhostChat/app/src/main/res/drawable/send_drawable.xml" value="0.26927083333333335" />
         <entry key="..\:/GhostChat/app/src/main/res/drawable/textbox_outline.xml" value="0.265625" />
         <entry key="..\:/GhostChat/app/src/main/res/layout/activity_chat.xml" value="0.264" />
         <entry key="..\:/GhostChat/app/src/main/res/layout/activity_main.xml" value="0.264" />
@@ -11,6 +13,8 @@
         <entry key="..\:/GhostChat/app/src/main/res/layout/activity_profile_setup.xml" value="0.253125" />
         <entry key="..\:/GhostChat/app/src/main/res/layout/activity_setup_profile.xml" value="0.2390625" />
         <entry key="..\:/GhostChat/app/src/main/res/layout/activity_splash_screen.xml" value="0.24947916666666667" />
+        <entry key="..\:/GhostChat/app/src/main/res/layout/item_receive.xml" value="0.264" />
+        <entry key="..\:/GhostChat/app/src/main/res/layout/item_send.xml" value="0.264" />
         <entry key="..\:/GhostChat/app/src/main/res/layout/row_conversation.xml" value="0.264" />
         <entry key="..\:/GhostChat/app/src/main/res/menu/menu.xml" value="0.253125" />
         <entry key="..\:/GhostChat/app/src/main/res/menu/top_menu.xml" value="0.253125" />

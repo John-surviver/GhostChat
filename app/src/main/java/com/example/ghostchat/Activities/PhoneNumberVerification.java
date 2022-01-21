@@ -1,4 +1,4 @@
-package com.example.ghostchat;
+package com.example.ghostchat.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

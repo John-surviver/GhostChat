@@ -1,14 +1,16 @@
-package com.example.ghostchat;
+package com.example.ghostchat.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.ghostchat.Adapters.UsersAdapter;
+import com.example.ghostchat.R;
+import com.example.ghostchat.Models.User;
 import com.example.ghostchat.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

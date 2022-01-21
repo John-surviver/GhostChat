@@ -1,4 +1,4 @@
-package com.example.ghostchat;
+package com.example.ghostchat.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.ghostchat.Activities.ChatActivity;
+import com.example.ghostchat.Activities.SetupProfileActivity;
+import com.example.ghostchat.Models.User;
+import com.example.ghostchat.R;
 import com.example.ghostchat.databinding.RowConversationBinding;
 
 import java.util.ArrayList;
@@ -19,7 +23,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
     Context context;
     ArrayList<User> users;
 
-    public  UsersAdapter(Context context,ArrayList<User>users){
+    public UsersAdapter(Context context, ArrayList<User>users){
         this.context =context;
         this.users=users;
 
@@ -42,10 +46,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
                 .placeholder(R.drawable.avatar)
                 .into(holder.binding.profilepicid);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,ChatActivity.class);
+                Intent intent = new Intent(context, ChatActivity.class);
                 context.startActivity(intent);
             }
         });
@@ -61,7 +66,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
         RowConversationBinding binding;
         public UsersViewHolder(@NonNull View itemView) {
             super(itemView);
-            binding=RowConversationBinding.bind(itemView);
+            binding= RowConversationBinding.bind(itemView);
         }
     }
 }
